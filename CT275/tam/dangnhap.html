@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+</head>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="asset/css/cs.css">
+    <link rel="shortcut icon" href="asset/img/logo/logo3.PNG">
+<body>
+    <!-- thanh search -->
+    <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href=""><img src="asset/img/logo/logo3.PNG" alt="T A M Shop" width="160px" height="50px"/></a>
+        <!-- <a class="navbar-brand" href="#"><h1 class="mautenshop">T A M Shop</h1></a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="maunen collapse navbar-collapse navbar-dark bg-primary" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto ">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Lienhe.php">Liên hệ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="giohang.php">Giỏ Hàng</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 paddingSearch">
+            <input style="margin-left: 98px;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success mr-sm-1 my-2 my-sm-0 bgroudsearch" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav mr-3 ">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Đăng nhập<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Dangky.html">Đăng ký</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+      <!-- form đăng nhập -->
+
+<form action="dangnhap.php" id="formdn" name="formdn" method="POST" onsubmit="return test()">
+    <div class="container" id="dieukien">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md 12">
+                                <h1 class="canhgiua">Đăng nhập</h1>
+                            </div>
+                        </div>
+                        
+                        <!-- true -->
+
+                        <div class="row" v-if="hienmodal">
+                            <div class="col-md-12">
+                                <!-- <form action="dangnhap.php" method="POST" id="formDangNhap" name="formDangNhap"> -->
+                                    <!-- tài khoản -->
+                                    <div class="form-group" style="margin-bottom: 0;">
+                                        <label for="#">Nhập thông tin tài khoản</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                                <input type="text" class="form-control" id="txtDangNhapTK" name="txtDangNhapTK" v-model="nhaptk" placeholder="Tài khoản">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"></div>
+                                            </div>
+                                        </div>
+                                        <small id="loi1"class="form-text text-muted">Tài khoản nhập ít nhất 5 ký tự</small>
+                                    </div>
+                                    <!-- mật khẩu -->
+                                    <div class="form-group">
+                                        <label for="#"></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text paddingmatkhau">
+                                                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <input type="password" class="form-control" id="pwDangNhapPassword" name="pwDangNhapPassword" v-model="nhapmk" placeholder="Mật khẩu">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"></div>
+                                            </div>
+                                        </div>
+                                        <small id="loi2"class="form-text text-muted">Mật khẩu nhập ít nhất 3 ký tự</small>
+                                    </div>
+                                <!-- </form> -->
+                            </div>
+                        </div>
+                        <!-- button đăng nhập thành công-->
+                        <div class="row" v-if="hienmodal">
+                            <div class="col-md-12 ml-2">
+                                <!-- Button trigger modal -->
+                                <input type="submit" v-on:click="hienketqua" name="login" id="login" class="btn btn-primary" value="Đăng nhập">
+                            </div>
+                            <!-- <div class="col-md-6" style="padding-left:0;padding-top: 8px;"><a href="#">Quên mật khẩu?</a></div> -->
+                        </div>
+                    </div>
+               
+                    <div class="col-md-6 canhgiuaBackgdangky">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>Đăng ký</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>bạn sẽ nhận được nhiều ưu đãi từ shop khi trở thành thành viên cua
+                                shop. Bạn sẽ biết được nhiều thông tin mới nhất từ shop như: khuyến mãi, sự kiện,...</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="Dangky.html"><button type="button" class="btn btn-primary">Đăng ký ngay!</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+</form>
+</div>
+    <div class="container-fluid diachidnagnhap">
+        <div class="row">
+          <div class="col-md-12" id="diachi">
+            <ul>
+              <li>&copy;2020 Công ty cổ phần điện thoại thông minh (TAMShop). Địa chỉ: đường 3/2 Hưng Lợi - Ninh Kiều TP.CầnThơ. sđt: (03)33201099 . <br> Email: tamshop@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    
+
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/popperjs/popper.min.js"></script>
+    <script src="asset/js/app.js"></script>
+    <script src="vendor/vuejs/vue.js"></script>
+
+    <script>
+        function test(){
+            var check = true;
+
+            if(document.getElementById("txtDangNhapTK").value ==""){
+            document.getElementById("loi1").innerHTML="Vui lòng nhập tài khoản là số điện thoại của bạn!";
+            check=false;
+            }else {
+                document.getElementById("loi1").innerHTML="";
+            }
+
+            if(document.getElementById("pwDangNhapPassword").value ==""){
+            document.getElementById("loi2").innerHTML="Vui lòng nhập password!";
+            check=false;
+            }else {
+                document.getElementById("loi2").innerHTML="";
+            }
+
+            if(check==false){
+                alert("Vui lòng nhập tài khoản hoặc mật khẩu");
+            }
+            return check;
+        }
+        
+        
+    </script>
+</body>
+</html>

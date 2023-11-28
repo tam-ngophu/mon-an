@@ -1,0 +1,185 @@
+/* menu */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    color: #333;
+}
+
+#menu1 li:hover ul{
+  z-index: 1000;
+}
+#menu1 ul {
+    background: #1F568B;
+    list-style-type: none; 
+    padding-left: 20px;
+    position: absolute;
+    width: 100%;
+    margin-left: -15px;
+    
+}
+#menu1 li {
+    color: #f1f1f1;
+    display: inline-block; 
+    width: 120px;
+    height: 40px;
+    line-height: 40px; 
+    margin-left: -5px;
+    position: relative;
+    
+}
+#menu1 a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+
+#menu1 a:hover {
+    background: #F1F1F1;
+    color: #333;
+}
+.menu2 li{
+    display: none;
+} 
+
+.menu2{
+    display: none;
+    position: absolute;
+}
+#menu1 li:hover .menu2 {
+    display: block;
+    padding-left: 0px;
+    margin-left: -30px;
+}
+#menu1 li:hover li{
+  width: 250px;
+  background-color: #1F568B;
+  text-align: left;
+}
+
+ 
+ 
+
+
+/* img */
+
+.imgqc{
+    width: 700px;
+    height: 300px;
+    
+  }
+  .imgkqc{
+    width: 385px;
+    height: 200px;
+  }
+  .paddingqc{
+    padding-right: 100px;
+    /* border: 10px #ccc solid; */
+    padding-left: 0px;
+    margin-left: -50px;
+    margin-top: 10px;
+  }
+  .qckm{
+    margin-left: -50px;
+  }
+  .imgqcghichu{
+    width: 550px;
+    height: 300px;
+    border: rgba(39, 35, 34, 0.493) solid 1px;
+    margin-left: 10px;
+    margin-top: 30px;
+  }
+  
+
+  /* padding */
+
+  #diachi{
+    margin-top: 30px; 
+    padding: 10px;
+   
+  }
+  #diachi ul{
+    border: solid rgba(218, 205, 205, 0.87) 1px;
+    background: #e2d9d9d8;
+    list-style-type: none;
+    text-align: center;
+  }
+  .canhgiua{
+    text-align: center;
+  }
+  .paddingmatkhau{
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .canhgiuaBackgdangky{
+    text-align: center;
+    background-color: #1f7b8b;
+    color: #f1f1f1;
+  }
+  .canhsizenut{
+    width: 70px;
+    height: 40px;
+  }
+  .diachidnagnhap{
+    position: fixed;
+    bottom: 0px;
+  }
+
+  /* thanh search */
+
+  .mauchu li a:hover{
+    background-color:rgb(24, 34, 175);
+   
+  }
+  .bgroudsearch{
+    background-color: wheat;
+  } 
+  
+  .paddingSearch{
+    padding-left: 305px;
+    right: 0;
+  }
+  .mautenshop{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #a83c5f;
+  }
+
+  /* backgroud */
+  .backgroudghichu{
+    background-color: teal;
+    
+  }
+  .backgroudghichu1{
+    text-decoration: solid 0.5px rgb(82, 90, 90);
+  }
+
+  
+  .backgroudnencontainer{
+    background: whitesmoke;
+  }
+  
+  #icon{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+  }
+  .MSDT{
+    display: none;
+  }
+.banchay1{
+  margin-top: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  left: 0;
+  border: solid rgb(252, 168, 168) 1px;
+  height: 460px;
+  width: 500px;
+  background-color: rgb(253, 170, 170);
+  
+}

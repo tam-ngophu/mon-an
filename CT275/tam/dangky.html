@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+    <script>
+        function kiemtra(str) {
+            if (str.length == 0) {
+                document.getElementById("txtTaikhoan").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+    
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("loi0").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "ktrasdt.php?q=" + str, true);
+            xmlhttp.send();
+            }
+        }
+    </script> 
+</head>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="asset/css/cs.css">
+    <link rel="shortcut icon" href="asset/img/logo/logo3.PNG">
+    <style>
+        .container{
+            border: 1px solid #ccc;
+        }
+       .color{
+           color: red;
+           padding-left: 20px;
+           
+       }
+    </style>
+    
+<body>
+    <!-- thanh search -->
+    <nav class="navbar navbar-expand-lg " id="search1">
+        <a class="navbar-brand" href=""><img src="asset/img/logo/logo3.PNG" alt="T A M Shop" width="160px" height="50px"/></a>
+        <!-- <a class="navbar-brand" href="#"><h1 class="mautenshop">T A M Shop</h1></a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="maunen collapse navbar-collapse navbar-dark bg-primary" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto ">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Trang chủ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Lienhe.php">Liên hệ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="giohang.php">Giỏ Hàng</a>
+            </li>
+            
+        <form class="form-inline my-2 my-lg-0 paddingSearch">
+            <input style="margin-left: 98px;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success  mr-sm-1 my-2 my-sm-0 bgroudsearch" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav mr-3 ">
+            <li class="nav-item">
+                <a class="nav-link" href="Dangnhap.html">Đăng nhập</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Đăng Ký<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+
+
+    <!-- Đăng ký -->
+    <div id="dangky">
+        <div class="container backgroudnencontainer">
+            <form name="frmLienHe" id="frmLienHe" method="post" action="dangky.php" novalidate="true" onsubmit="return test()">
+                <div class="alert-danger">
+                    <!-- <p id="loi1"class="color"></p>
+                    <p id="loi2"class="color"></p>
+                    <p id="loi3"class="color"></p> -->
+                    <!-- <p id="loi4"class="color"></p>
+                    <p id="loi5"class="color"></p>
+                    <p id="loi6"class="color"></p>
+                    <p id="loi7"class="color"></p>
+                    <p id="loi8"class="color"></p>
+                    <p id="loi9"class="color"></p> -->
+                </div>
+                
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row" style="margin-top: 22px">
+                                    <label for="txtHoten" class="col-sm-2 col-form-label">Họ&Tên</label>
+                                    <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="txtHoten" name="txtHoten" v-model="nhapht">
+                                    <small id="loi1" class="form-text" style="color: red!important;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">Giớitính</label>
+                                    <div class="col-sm-2" style="margin-top: 7px; text-align: right;">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="rdGioitinh" id="rdGioitinh1" checked value="nam" v-model="nhapgt">
+                                            <label class="form-check-label" for="rdGioitinh1" >Nam</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2" style="margin-top: 7px;padding-left: 0;">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="rdGioitinh" id="rdGioitinh2" value="nu" v-model="nhapgt">
+                                            <label class="form-check-label" for="rdGioitinh2">Nữ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="dateNS" class="col-sm-2 col-form-label">Ngàysinh</label>
+                                    <div class="col-sm-10">
+                                    <input type="date" class="form-control" id="dateNS" name="dateNS" v-model="nhapns">
+                                    <small id="loi2" class="form-text" style="color: red!important;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="E-mail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                    <input type="email" class="form-control" v-model="nhapemail" id="E-mail" name="E-mail" placeholder="ABC@gmai.com">
+                                    <small id="loi7" class="form-text" style="color: red!important;"></small>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="txtTaikhoan" class="col-sm-2 col-form-label">Account</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" onkeyup="kiemtra(this.value)" id="txtTaikhoan" name="txtTaikhoan" placeholder="Nhập số điện thoại">
+                                      <small id="loi0" class="form-text" style="color: red!important;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="inputPassword1" class="col-sm-2 col-form-label">Password</label>
+                                    <div class="col-sm-10">
+                                      <input type="password" class="form-control" v-model="nhapmk" id="inputPassword1" name="inputPassword1">
+                                      <small id="loi3" class="form-text" style="color: red!important;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="inputPassword2" class="col-sm-2 col-form-label">Nhập lại Password</label>
+                                    <div class="col-sm-10" style="margin-top: 12px;">
+                                      <input type="password" class="form-control" v-model="nhaplaimk" id="inputPassword2" name="inputPassword2">
+                                      <small id="loi4" class="form-text" style="color: red!important;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="txtCMND" class="col-sm-2 col-form-label">CMND</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" v-model="nhapcmnd" id="txtCMND" name="txtCMND">
+                                      <small id="loi5" class="form-text" style="color: red!important;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row">
+                                    <label for="txtDiachi" class="col-sm-2 col-form-label">Địachỉ</label>
+                                    <div class="col-sm-10">
+                                    <textarea name="txtDiachi" id="txtDiachi" v-model="nhapdc" cols="50" rows="4"></textarea>
+                                    <small id="loi6" class="form-text" style="color: red!important;"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group row" style="margin-left: 230px">
+                                    <button type="submit" name="dangky" class="btn btn-outline-primary">Đăng ký</button>
+                                    <!-- <a href="#search1"><button type="submit" class="btn btn-outline-primary">Đăng ký</button></a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 backgroudghichu" style="left: 10px;">
+                        <div class="row backgroudghichu1">
+                            <div class="col-md-12"><h1 style="text-align: center;">Ghi chú</h1></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                1. Bạn sẽ nhận được mọi ưu đãi thành viên khi đăng ký.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                2. Mua hàng một cách nhanh chóng.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                3. Sẽ nhận được thông tin mới nhất từ shop.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                4. Dễ dàng liên hệ và biết thêm thông tin về sản phẩm.
+                            </div>
+                        <div class="row">
+                            <div class="col-md-12" style="left: 5px;">
+                                <a href="chitiet6.html"><img src="asset/img/quangcao/quangcao_2.jpg" class="imgqcghichu img-fluid" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center" style="margin-top: 13px;">
+                               <b style="margin-left: 10px; padding-right: 20px;"> Thông tin chi tiết Liên hệ: (03) 7705 651 hoặc E-mail: tamshop@gmail.com</b>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/popperjs/popper.min.js"></script>
+    <script src="asset/js/app.js"></script>
+    <script src="vendor/vuejs/vue.js"></script>
+
+       
+    
+
+
+<script>
+    
+function test(){
+    var check =true;
+    
+    if(document.getElementById("txtHoten").value ==""){
+        document.getElementById("loi1").innerHTML="Vui lòng nhập Họ tên!";
+        check=false;
+    }else if(document.getElementById("txtHoten").length < 5){
+        document.getElementById("loi1").innerHTML="Vui lòng nhập Họ tên ít nhất 5 ký tự!";
+        check=false;
+    }else {
+        document.getElementById("loi1").innerHTML="";
+    }
+
+    if(document.getElementById("dateNS").value ==""){
+        document.getElementById("loi2").innerHTML="Vui lòng nhập ngày sinh!";check=false;
+    }else {
+        document.getElementById("loi2").innerHTML="";
+    }
+
+    if(document.getElementById("txtTaikhoan").value ==""){
+        document.getElementById("loi0").innerHTML="Vui lòng nhập số điện thoại của bạn!";check=false;
+    }else if(document.getElementById("txtHoten").length < 5){
+        document.getElementById("loi0").innerHTML="Vui lòng nhập số điện thoại thật của bạn!";check=false;
+    }else {
+        document.getElementById("loi0").innerHTML="";
+    }
+
+    if(document.getElementById("inputPassword1").value ==""){
+        document.getElementById("loi3").innerHTML="Vui lòng nhập password!";check=false;
+    }else if(document.getElementById("inputPassword1").length < 3){
+        document.getElementById("loi3").innerHTML="Vui lòng nhập Họ tên ít nhất 3 ký tự!";check=false;
+    }else {
+        document.getElementById("loi3").innerHTML="";
+    }
+
+    if(document.getElementById("inputPassword2").value =="" && document.getElementById("inputPassword1").value !=""){
+        document.getElementById("loi4").innerHTML="Vui lòng nhập lại password!";check=false;
+    }else if(document.getElementById("inputPassword2").value =="" && document.getElementById("inputPassword1").value ==""){
+        document.getElementById("loi4").innerHTML="";check=false;
+    }else if(document.getElementById("inputPassword2").value != document.getElementById("inputPassword1").value){
+        document.getElementById("loi4").innerHTML="Vui lòng nhập password giống như trên!";check=false;
+    }else {
+        document.getElementById("loi4").innerHTML="";
+    }
+
+    if(document.getElementById("txtCMND").value ==""){
+        document.getElementById("loi5").innerHTML="Vui lòng nhập CMND!";check=false;
+    }else if(document.getElementById("txtCMND").length < 5){
+        document.getElementById("loi5").innerHTML="Vui lòng nhập CMND ít nhất 5 ký tự!";check=false;
+    }else {
+        document.getElementById("loi5").innerHTML="";
+    }
+
+    if(document.getElementById("txtDiachi").value ==""){
+        document.getElementById("loi6").innerHTML="Vui lòng nhập địa chỉ!";check=false;
+    }else if(document.getElementById("txtDiachi").length < 5){
+        document.getElementById("loi6").innerHTML="Vui lòng nhập địa chỉ ít nhất 5 ký tự!";check=false;
+    }else {
+        document.getElementById("loi6").innerHTML="";
+    }
+    //còn check email
+    var email=document.getElementById("E-mail").value;
+    if(ktraemail(email)){
+        document.getElementById("loi7").innerHTML="";
+    }else if(email ==""){
+        document.getElementById("loi7").innerHTML="Vui lòng nhập email!";
+    }else{
+        document.getElementById("loi7").innerHTML="Vui lòng nhập email đúng dạng abc@gmail.com!";
+    }
+    if(check==true){
+        alert("đăng ký thành công!!!");
+    }else{
+        alert("đăng ký không thành công, vui lòng kiểm tra lổi của bạn");
+    }
+    return check;
+    
+}
+function ktraemail(email){
+    email_check = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return email_check.test(email)
+}
+    </script>  
+    
+
+</body>
+</html>

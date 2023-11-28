@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Poster</title>
+</head>
+<body>
+    <div>
+        <h2>Anime Poster</h2>
+        <input type="text" spellcheck="false" id="anime-name-input" />
+        <button id="search-btn">Tìm</button>
+        <hr>
+        <div id="result-div"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function() {
+            const inputAnimeName = $("#anime-name-input");
+            const btnSearch = $("#search-btn");
+            const divResult = $("#result-div");
+
+            const searchAnimePoster = (name) => {
+                const pSummary = $("<p></p>");
+                const imgPoster = $("<img>");
+
+                pSummary.text("Đang tìm...");
+                imgPoster.prop("src", "#");
+
+                divResult.append(pSummary);
+
+                $.getJSON(`https://kitsu.io/api/edge/anime?filter[text]=${name}`, (data) => {
+                    console.log(data);
+                    if (data.data.length > 0) {
+                        pSummary.text("Summary: " + data.data[0].attributes.synopsis);
+                        imgPoster.prop("src", data.data[0].attributes.posterImage.medium);
+                        imgPoster.appendTo(divResult);
+                    } else {
+                        pSummary.text("Không tìm thấy kết quả.");
+                    }
+                })
+                .fail((error) => {
+                    console.log(error);
+                    pSummary.text("Không tìm thấy kết quả.");
+                });
+            }
+
+            btnSearch.on("click", () => {
+                const animeName = inputAnimeName.val().toLowerCase();
+                divResult.html("");
+                searchAnimePoster(animeName);
+            });
+
+            inputAnimeName.keydown((event) => {
+                if (event.which == 13) {
+                    btnSearch.trigger("click");
+                }
+            })
+        })
+    </script>
+</body>
+</html>

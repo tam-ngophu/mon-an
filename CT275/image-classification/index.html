@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Machine Learning</title>
+	</head>
+	<body>
+		<h2>Phân loại ảnh</h2>
+		<input type="file" />
+		<hr />
+		<div id="container" style="display: none">
+			<img src="#" alt="" style="display: block" />
+			<button style="margin-top: 5px">Phân loại</button>
+			<p style="margin-top: 5px"></p>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
+		<script>
+			$(function () {
+				const fileInput = $('input:file');
+				const divContainer = $('#container');
+				const pResult = divContainer.children('p');
+				const img = $('#container > img');
+				let model = null;
+				let imageFileURL = null;
+
+				divContainer.hide();
+				fileInput.change((e) => {
+					divContainer.show();
+					if (imageFileURL) {
+						URL.revokeObjectURL(imageFileURL);
+					}
+					imageFileURL = URL.createObjectURL(e.target.files[0]);
+					img.prop('src', imageFileURL);
+					pResult.text('');
+				});
+
+				$('#container > button').click(async (e) => {
+					// HTML tags - DOM objects - jQuery objects
+					$(e.target).prop('disabled', true);
+					$(e.target).text('Đang phân loại...');
+					pResult.text('');
+
+					if (!model) {
+						model = await mobilenet.load();
+					}
+					const predictions = await model.classify(img[0]);
+
+					console.log(predictions);
+
+					$(e.target).prop('disabled', false);
+					$(e.target).text('Phân loại');
+					pResult.text(`Tên lớp: ${predictions[0].className},
+                        Độ tin cậy: ${predictions[0].probability.toFixed(4)}`);
+				});
+			});
+		</script>
+	</body>
+</html>
